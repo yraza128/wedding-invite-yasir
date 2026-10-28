@@ -7,10 +7,13 @@
 
 <!-- WhatsApp / social link preview. Upload a nice 1200x630 image and put its full URL below -->
 <meta property="og:title" content="💌 You are invited – Wedding of Major Yasir Raza">
-<meta property="og:description" content="Mr. &amp; Mrs. Mulazim Hussain invite you · Mehandi 10 Nov · Baraat 11 Nov · Walima 12 Nov 2026. Tap to open your invitation.">
+<meta property="og:description" content="Mr. &amp; Mrs. Mulazim Hussain invite you. Mehandi · 10 Nov · Baraat · 11 Nov · Walima · 12 Nov 2026. Tap to open your invitation.">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
-<meta property="og:image" content="">
+<meta property="og:image" content="https://yraza128.github.io/wedding-invite-yasir/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://yraza128.github.io/wedding-invite-yasir/preview.jpg">
 <meta name="theme-color" content="#2a0b12">
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Poppins:wght@300;400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -279,7 +282,6 @@ footer i{color:#e0566b;cursor:pointer}
         <p>Main Mall Road, Near GPO Under Pass, Rawalpindi</p>
         <div class="btns">
           <a class="btn btn-map" target="_blank" href="https://maps.google.com/?q=Garrison+Officers+Mess+Mall+Road+Rawalpindi"><i class="fa-solid fa-location-dot"></i> Open Map</a>
-          <button class="btn btn-cal" data-ics="m"><i class="fa-regular fa-calendar-plus"></i> Add to Calendar</button>
         </div>
       </div>
       <p style="margin-top:18px;font-style:italic;color:#d8e8d8;font-size:.88rem">Awaiting Eyes: All Sisters, Cousins &amp; Friends</p>
@@ -305,11 +307,10 @@ footer i{color:#e0566b;cursor:pointer}
         <p>House # 279/6-F, Mohalla Kamalabad-3, Rawalpindi</p>
         <div class="btns">
           <a class="btn btn-map" target="_blank" href="https://maps.google.com/?q=House+279+6-F+Mohalla+Kamalabad-3+Rawalpindi"><i class="fa-solid fa-location-dot"></i> Open Map</a>
-          <button class="btn btn-cal" data-ics="b"><i class="fa-regular fa-calendar-plus"></i> Add to Calendar</button>
         </div>
       </div>
       <div class="fwd"><b>Looking Forward</b>
-        <div class="row">Mr. &amp; Mrs. Jawad Ali Qadir · <a href="tel:03215108710">0321-510871</a></div>
+        <div class="row">Mr. &amp; Mrs. Jawad Ali Qadir · <a href="tel:03215108751">0321-5108751</a></div>
         <div class="row">Mr. &amp; Mrs. Jalil ur Rehman · <a href="tel:03335905593">0333-5905593</a></div>
         <div class="row">Mr. &amp; Mrs. Imran Ali Qadir · <a href="tel:03335752376">0333-5752376</a></div>
       </div>
@@ -335,7 +336,6 @@ footer i{color:#e0566b;cursor:pointer}
         <p>Main Mall Road, Near GPO Under Pass, Rawalpindi</p>
         <div class="btns">
           <a class="btn btn-map" target="_blank" href="https://maps.google.com/?q=Garrison+Officers+Mess+Mall+Road+Rawalpindi"><i class="fa-solid fa-location-dot"></i> Open Map</a>
-          <button class="btn btn-cal" data-ics="w"><i class="fa-regular fa-calendar-plus"></i> Add to Calendar</button>
         </div>
       </div>
       <div class="fwd"><b>Looking Forward</b>
@@ -343,7 +343,7 @@ footer i{color:#e0566b;cursor:pointer}
         <div class="row">Mr. &amp; Mrs. Amir Wagas</div>
         <div class="row">Mr. &amp; Mrs. Jalil ur Rehman · <a href="tel:03335905593">0333-5905593</a></div>
         <div class="row">Mr. &amp; Mrs. Imran Ali Qadir · <a href="tel:03335752376">0333-5752376</a></div>
-        <div class="row">Mr. &amp; Mrs. Jawad Ali Qadir · <a href="tel:03215108710">0321-510871</a></div>
+        <div class="row">Mr. &amp; Mrs. Jawad Ali Qadir · <a href="tel:03215108751">0321-5108751</a></div>
         <div class="row" style="margin-top:8px"><b style="display:inline">R.S.V.P:</b> All Family</div>
       </div>
     </div>
@@ -400,7 +400,9 @@ const EVENTS = {
 const $ = s => document.querySelector(s);
 
 /* ---------- read guest link ---------- */
+const PAGE_EVENTS = 'mbw';
 const P = new URLSearchParams(location.search);
+P.set('e', PAGE_EVENTS);
 if (!P.has('e') && location.hash && !location.hash.includes('admin')) { new URLSearchParams(location.hash.slice(1)).forEach((v,k)=>P.set(k,v)); }
 let guest = (P.get('guest') || P.get('g') || '').trim();
 let allowed = new Set();
@@ -539,8 +541,8 @@ function buildLink(){
   const name = $('#gName').value.trim() || 'Guest';
   let e = ''; if ($('#gM').checked) e+='m'; if ($('#gB').checked) e+='b'; if ($('#gW').checked) e+='w';
   if (!e) { $('#gPreview').textContent = 'Please select at least one celebration.'; return null; }
-  const url = new URL(location.pathname, location.origin);
-  url.searchParams.set('g', name); url.searchParams.set('e', e);
+  const url = new URL('https://yraza128.github.io/wedding-invite-yasir/' + e + '/');
+  url.searchParams.set('g', name);
   const link = url.toString();
   // Default: send ONLY the link, so WhatsApp shows it as one big invitation card (image + title) that opens with a single tap.
   const msg = $('#gGreet').checked ? `﷽ ${name}, you are invited 💌\n${link}` : link;
