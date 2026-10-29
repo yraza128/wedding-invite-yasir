@@ -7,7 +7,7 @@
 
 <!-- WhatsApp / social link preview. Upload a nice 1200x630 image and put its full URL below -->
 <meta property="og:title" content="💌 You are invited – Wedding of Major Yasir Raza">
-<meta property="og:description" content="Mr. &amp; Mrs. Mulazim Hussain invite you. Mehandi · 10 Nov 2026. Tap to open your invitation.">
+<meta property="og:description" content="Mr. &amp; Mrs. Mulazim Hussain invite you. Mehandi · 10 Nov · Baraat · 11 Nov · Walima · 12 Nov 2026. Tap to open your invitation.">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://yraza128.github.io/wedding-invite-yasir/preview.jpg">
@@ -402,7 +402,7 @@ const EVENTS = {
 const $ = s => document.querySelector(s);
 
 /* ---------- read guest link ---------- */
-const PAGE_EVENTS = 'm';
+const PAGE_EVENTS = 'mbw';
 const P = new URLSearchParams(location.search);
 P.set('e', PAGE_EVENTS);
 if (!P.has('e') && location.hash && !location.hash.includes('admin')) { new URLSearchParams(location.hash.slice(1)).forEach((v,k)=>P.set(k,v)); }
